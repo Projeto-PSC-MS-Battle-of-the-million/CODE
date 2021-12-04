@@ -6,6 +6,7 @@ public class Pergunta {
     private int id;
     private String enunciado;
     private String alternativas;
+    private boolean ativa;
     
     //Metodo Construtor
 
@@ -20,6 +21,7 @@ public class Pergunta {
     public String getEnunciado() {
         return enunciado;
     }
+    
 
     public void setEnunciado(String e) {
         this.enunciado = e;
@@ -40,6 +42,16 @@ public class Pergunta {
     public void setAlternativas(String a) {
         this.alternativas = a;
     }
+
+    public boolean getAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
+    }
+    
+    
    
     
 }

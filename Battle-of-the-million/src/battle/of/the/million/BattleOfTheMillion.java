@@ -1,5 +1,7 @@
 package battle.of.the.million;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BattleOfTheMillion {
@@ -30,8 +32,18 @@ public class BattleOfTheMillion {
        q[8] = new Pergunta ("Pergunta", 8);
        q[9] = new Pergunta ("Pergunta", 9);
        
-       //Alternativas
+       //Alternativas Wdison
        
+       ArrayList<Alternativas> alt = new ArrayList<Alternativas>();
+       for (int i=0;i<10;i++)
+       {
+            alt.add(new Alternativas (false, "Alternativa",i));
+            alt.add(new Alternativas (false, "Alternativa",i));
+            alt.add(new Alternativas (true, "Alternativa",i));
+            alt.add(new Alternativas (false, "Alternativa",i));
+       }            
+       
+       //Alternativas Gustavo
        Alternativas a [] = new Alternativas [40];
        
        a[0] = new Alternativas (false, "Alternativa",0);
@@ -79,7 +91,7 @@ public class BattleOfTheMillion {
        
        MenuInicial m1 = new MenuInicial();
        
-       // m1.MenuInicial();
+        m1.MenuInicial();
        
         //Entrada do Jogador
         
@@ -91,10 +103,10 @@ public class BattleOfTheMillion {
        j[1] = new Jogador ("null", "null", "null", 0, true);
        
         System.out.println("\n------ CADASTRO JOGADOR 1 ------\n");
-     //j[0].CadastrarJogador();
+     j[0].CadastrarJogador();
       
        System.out.println("\n------ CADASTRO JOGADOR 2 ------\n");
-     //  j[1].CadastrarJogador();
+      j[1].CadastrarJogador();
        
        //Escolha de Personagens
        
@@ -127,7 +139,7 @@ public class BattleOfTheMillion {
     
    s.random(j);
     
-   s.Quiz(q ,a);
+   s.Quiz(q ,alt);
     
     //Escolha de resposta
 

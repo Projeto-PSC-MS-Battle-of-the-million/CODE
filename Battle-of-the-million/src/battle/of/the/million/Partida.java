@@ -1,12 +1,15 @@
 package battle.of.the.million;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Partida extends Jogador{
 
     //Atributos
     
-    Partida s = new Partida("null","null","null",0,false);
+    
 
     //Métodos Construtor
     
@@ -27,37 +30,61 @@ public class Partida extends Jogador{
                 
                 System.out.println("O Player " + j[0].getApelido() + " jogara primeiro");
                     
-                j[0].EscolherResposta();
+               
                 
             }else{
                 System.out.println("O Player " + j[1].getApelido() + " jogara primeiro");
                 
-                j[1].EscolherResposta();
+               
             }
             
     }
-    public void Quiz(Pergunta [] p, Alternativas [] a){
-        
+    public void Quiz(Pergunta [] p,  ArrayList<Alternativas> alt){
+       //  Alternativas [] a Lista de entrada do Gustavo
         Random  i = new Random();
         
-           int x = i.nextInt(9);
+           int num = i.nextInt(9);
            char letter='@';
-           System.out.println("\n" + p[x].getEnunciado() + "\n");
+           System.out.println("\n" + p[num].getEnunciado() + "\n");
           
            
-           for(int y=0; y < 40; y++){
+             ArrayList<Alternativas> AlternativasSelecionadas = new ArrayList<Alternativas>();
+       
+            for(int y=0; y<alt.size();y++)
+            {
+             if(alt.get(y).getId()==num)
+             {
+                 AlternativasSelecionadas.add(alt.get(y));
+             }
+            }
+            
+            for(int y=0; y<AlternativasSelecionadas.size();y++)
+            {
+                 letter++;
+                 System.out.print("[" + letter + "] ");
+                 System.out.println(AlternativasSelecionadas.get(y).getEnunciado());
+            }
+           
+           
+         /*  for(int y=0; y < 40; y++){
               
                if(a[y].getId() == x ){
                    
-                    letter++;
-                
-                     
-
-                   System.out.print("[" + letter + "] ");
-               System.out.println(a[y].getEnunciado());
+                   
+              
                  
-}
-           }}
+}}*/
+           
+    if(this.EscolherResposta(AlternativasSelecionadas))
+    {
+        Quiz(p,alt);
+    }
+    else
+    {
+        System.out.println("Você errou! agora é a vez do jogador ");
+    }
+        
+        }
     
     
     

@@ -1,6 +1,7 @@
 package battle.of.the.million;
 
 import battle.of.the.million.Personagem;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.management.RuntimeErrorException;
 import java.util.InputMismatchException;
@@ -35,29 +36,29 @@ public class Jogador extends Personagem{
         
        
     }
-    public void EscolherResposta(){
+    public boolean EscolherResposta(ArrayList<Alternativas> AlternativasSelecionadas ){
         System.out.print("\nEscolha uma Alternativa: ");
-        
+                
         String r;
         r = input.next().toLowerCase();
-     
         System.out.println(r);
-        switch (r){
+        int resposta = 0;
+          switch (r){
             
             case "a":
-                
+                resposta = 0;
                 break;
                 
             case "b":
-                
+                  resposta = 1;
                 break;
                 
             case "c":
-                
+                  resposta = 2;
                 break;
                 
             case "d":
-                
+                 resposta =3;
                 break;
                 
             default:
@@ -65,6 +66,12 @@ public class Jogador extends Personagem{
                 break;
                 
         }
+        
+     return AlternativasSelecionadas.get(resposta).getStatus();
+   
+   
+        
+      
         
     }
       
