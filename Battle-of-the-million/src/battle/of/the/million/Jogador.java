@@ -31,23 +31,30 @@ public class Jogador extends Personagem{
         int x,a,d;
         
     }
-    public void EscolherResposta(Partida s){
-        int x;
-        System.out.print("\nEscolha uma Alternativa: ");
+    public void EscolherResposta(Partida s, Jogador [] j){
+        int x,i;
+       
+        if(j[0].getVez() == true){
+            i=0;
+        }else{
+            i=1;
+        }
+        System.out.print("\n" + j[i].nome + " Escolha uma Alternativa: ");
         
         String r;
         r = input.next().toLowerCase();
         
-        System.out.println("Confirmar alternativa?\n\n [1]Sim   [2]Não");
+        System.out.println("\nConfirmar alternativa?\n\n [1]Sim   [2]Não\n");
+        System.out.print("Digite uma opção: ");
         x = input.nextInt();
         
         if(x == 1){
             
         }else if(x ==2){
-            s.EscolherResposta(s);
+            s.EscolherResposta(s,j);
         }else{
             System.out.println("Alternativa invalida, digite novamente!");
-            s.EscolherResposta(s);
+            s.EscolherResposta(s,j);
         }
      
         switch (r){
@@ -55,8 +62,19 @@ public class Jogador extends Personagem{
             case "a":
                if (s.getA() == true){
                    System.out.println("Parabéns você acertou!");
+                   
                }else{
                    System.out.println("Você errou!");
+                   j[i].vez = false;
+                   
+                   if(i == 0){
+                       i=1;
+                        j[i].vez = true;
+                       
+                   }else{
+                       i=0;
+                       j[i].vez =true;
+                   }
                }
                 break;
                 
@@ -65,6 +83,16 @@ public class Jogador extends Personagem{
                    System.out.println("Parabéns você acertou!");
                }else{
                    System.out.println("Você errou!");
+                   j[i].vez = false;
+                   
+                   if(i == 0){
+                       i=1;
+                        j[i].vez = true;
+                       
+                   }else{
+                       i=0;
+                       j[i].vez =true;
+                   }
                }
                 break;
                 
@@ -73,6 +101,16 @@ public class Jogador extends Personagem{
                    System.out.println("Parabéns você acertou!");
                }else{
                    System.out.println("Você errou!");
+                   j[i].vez = false;
+                   
+                   if(i == 0){
+                       i=1;
+                        j[i].vez = true;
+                       
+                   }else{
+                       i=0;
+                       j[i].vez =true;
+                   }
                }
                 break;
                 
@@ -81,12 +119,22 @@ public class Jogador extends Personagem{
                    System.out.println("Parabéns você acertou!");
                }else{
                    System.out.println("Você errou!");
+                   j[i].vez = false;
+                   
+                   if(i == 0){
+                       i=1;
+                        j[i].vez = true;
+                       
+                   }else{
+                       i=0;
+                       j[i].vez =true;
+                   }
                }
                 break;
                 
             default:
                 System.out.println("Alternativa invalida, digite novamente!");
-                s.EscolherResposta(s);
+                s.EscolherResposta(s,j);
                 break;
                 
         }

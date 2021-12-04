@@ -138,8 +138,12 @@ public class BattleOfTheMillion {
        
      //Apresentação da Questão
      
-       s.Quiz(q ,a);
-       s.EscolherResposta(s);
+     for (int i=0;i<=10;i++){
+         s.Quiz(q ,a);
+       s.EscolherResposta(s,j);
+       
+    }
+      
        
        
     }
