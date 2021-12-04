@@ -1,15 +1,12 @@
 package battle.of.the.million;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 public class Partida extends Jogador{
 
     //Atributos
     
-    
+  boolean A,B,C,D;
 
     //Métodos Construtor
     
@@ -21,72 +18,90 @@ public class Partida extends Jogador{
    
     public void random(Jogador [] j){
        Random aleatorio = new Random();
-            j[0].setVez(aleatorio.nextInt(100));
-            j[1].setVez(aleatorio.nextInt(100));
+            j[0].setSorte(aleatorio.nextInt(100));
+            j[1].setSorte(aleatorio.nextInt(100));
             
-            if(j[0].getVez() == j[1].getVez()){
+            if(j[0].getSorte()== j[1].getSorte()){
                 random(j);
-            }else if (j[0].getVez() > j[1].getVez()){
+            }else if (j[0].getSorte()> j[1].getSorte()){
                 
                 System.out.println("O Player " + j[0].getApelido() + " jogara primeiro");
-                    
-               
-                
+                    j[0].setVez(true);
+                    j[1].setVez(false);
             }else{
                 System.out.println("O Player " + j[1].getApelido() + " jogara primeiro");
-                
-               
+                    j[1].setVez(true);
+                    j[0].setVez(false);
             }
             
     }
-    public void Quiz(Pergunta [] p,  ArrayList<Alternativas> alt){
-       //  Alternativas [] a Lista de entrada do Gustavo
+    public void Quiz(Pergunta [] p, Alternativas [] a){
+        
         Random  i = new Random();
         
-           int num = i.nextInt(9);
+           int x = i.nextInt(9);
            char letter='@';
-           System.out.println("\n" + p[num].getEnunciado() + "\n");
+           System.out.println("\n" + p[x].getEnunciado() + "\n");
           
-           
-             ArrayList<Alternativas> AlternativasSelecionadas = new ArrayList<Alternativas>();
-       
-            for(int y=0; y<alt.size();y++)
-            {
-             if(alt.get(y).getId()==num)
-             {
-                 AlternativasSelecionadas.add(alt.get(y));
-             }
-            }
-            
-            for(int y=0; y<AlternativasSelecionadas.size();y++)
-            {
-                 letter++;
-                 System.out.print("[" + letter + "] ");
-                 System.out.println(AlternativasSelecionadas.get(y).getEnunciado());
-            }
-           
-           
-         /*  for(int y=0; y < 40; y++){
+           for(int y=0; y < 40; y++){
               
                if(a[y].getId() == x ){
                    
-                   
-              
+                    letter++;
+                
+                       String Stringletter = Character.toString(letter);
+
+                      
+                   System.out.print("[" + Stringletter + "] ");
+               System.out.println(a[y].getEnunciado());
                  
-}}*/
-           
-    if(this.EscolherResposta(AlternativasSelecionadas))
-    {
-        Quiz(p,alt);
+               if(Stringletter.equalsIgnoreCase("A")){ 
+                   A = a[y].getStatus();
+               }else if(Stringletter.equalsIgnoreCase("B")){
+                   B = a[y].getStatus();
+               }else if(Stringletter.equalsIgnoreCase("C")){
+                   C = a[y].getStatus();
+               }else {
+                   D = a[y].getStatus();
+               }
+}
+           }
+          
     }
-    else
-    {
-        System.out.println("Você errou! agora é a vez do jogador ");
+    
+    //Métodos Especiais
+
+    public boolean getA() {
+        return A;
     }
-        
-        }
-    
-    
+
+    public void setA(boolean A) {
+        this.A = A;
+    }
+
+    public boolean getB() {
+        return B;
+    }
+
+    public void setB(boolean B) {
+        this.B = B;
+    }
+
+    public boolean getC() {
+        return C;
+    }
+
+    public void setC(boolean C) {
+        this.C = C;
+    }
+
+    public boolean getD() {
+        return D;
+    }
+
+    public void setD(boolean D) {
+        this.D = D;
+    }
     
 }
     

@@ -1,7 +1,6 @@
 package battle.of.the.million;
 
 import battle.of.the.million.Personagem;
-import java.util.ArrayList;
 import java.util.Scanner;
 import javax.management.RuntimeErrorException;
 import java.util.InputMismatchException;
@@ -13,11 +12,11 @@ public class Jogador extends Personagem{
     private String nome, apelido, email;
     private long telefone;
     private Personagem perselec;
-    private int vez;
+    private int sorte;
+    private boolean vez;
     
       Scanner input = new Scanner(System.in);
 
-      
       //Método Construtor
       
     public Jogador(String nome, String n, String h, float v, boolean s) {
@@ -25,53 +24,72 @@ public class Jogador extends Personagem{
         this.nome = nome;
     }
 
-
-      
-
     //Métodos 
     
     public void teste(){
         
         int x,a,d;
         
-       
     }
-    public boolean EscolherResposta(ArrayList<Alternativas> AlternativasSelecionadas ){
+    public void EscolherResposta(Partida s){
+        int x;
         System.out.print("\nEscolha uma Alternativa: ");
-                
+        
         String r;
         r = input.next().toLowerCase();
-        System.out.println(r);
-        int resposta = 0;
-          switch (r){
+        
+        System.out.println("Confirmar alternativa?\n\n [1]Sim   [2]Não");
+        x = input.nextInt();
+        
+        if(x == 1){
+            
+        }else if(x ==2){
+            s.EscolherResposta(s);
+        }else{
+            System.out.println("Alternativa invalida, digite novamente!");
+            s.EscolherResposta(s);
+        }
+     
+        switch (r){
             
             case "a":
-                resposta = 0;
+               if (s.getA() == true){
+                   System.out.println("Parabéns você acertou!");
+               }else{
+                   System.out.println("Você errou!");
+               }
                 break;
                 
             case "b":
-                  resposta = 1;
+                if (s.getA() == true){
+                   System.out.println("Parabéns você acertou!");
+               }else{
+                   System.out.println("Você errou!");
+               }
                 break;
                 
             case "c":
-                  resposta = 2;
+                if (s.getC() == true){
+                   System.out.println("Parabéns você acertou!");
+               }else{
+                   System.out.println("Você errou!");
+               }
                 break;
                 
             case "d":
-                 resposta =3;
+                if (s.getD() == true){
+                   System.out.println("Parabéns você acertou!");
+               }else{
+                   System.out.println("Você errou!");
+               }
                 break;
                 
             default:
-                
+                System.out.println("Alternativa invalida, digite novamente!");
+                s.EscolherResposta(s);
                 break;
                 
         }
-        
-     return AlternativasSelecionadas.get(resposta).getStatus();
-   
-   
-        
-      
         
     }
       
@@ -102,10 +120,8 @@ public class Jogador extends Personagem{
             this.CadastrarJogador();
     }
         
-        
         }
         
-    
     public void EscolherPersonagem(Personagem [] p){
         
         System.out.print("\n"+ this.getApelido() +" Escolha um dos personagens: ");
@@ -166,8 +182,6 @@ public class Jogador extends Personagem{
         }
     }
     
-    
-    
     public Personagem getPerselec() {
         return perselec;
     }
@@ -210,14 +224,6 @@ public class Jogador extends Personagem{
         this.telefone = t;
     }
 
-    public int getVez() {
-        return vez;
-    }
-
-    public void setVez(int vez) {
-        this.vez = vez;
-    }
-
     public Scanner getInput() {
         return input;
     }
@@ -225,5 +231,23 @@ public class Jogador extends Personagem{
     public void setInput(Scanner i) {
         this.input = i;
     }
+
+    public int getSorte() {
+        return sorte;
+    }
+
+    public void setSorte(int sorte) {
+        this.sorte = sorte;
+    }
+
+    public boolean getVez() {
+        return vez;
+    }
+
+    public void setVez(boolean vez) {
+        this.vez = vez;
+    }
+    
+    
     
 }

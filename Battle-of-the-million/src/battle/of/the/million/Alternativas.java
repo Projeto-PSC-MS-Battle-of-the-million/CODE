@@ -6,6 +6,7 @@ public class Alternativas{
     private boolean status;
     private String enunciado;
     private int id;
+    
     //Metodo Construtor
 
     public Alternativas(boolean s, String e, int i) {
@@ -13,8 +14,6 @@ public class Alternativas{
         this.enunciado = e;
         this.id = i;
     }
-    
-    
     
     //Metodos Especiais
 

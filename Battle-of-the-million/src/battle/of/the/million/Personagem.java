@@ -65,8 +65,4 @@ public  class Personagem {
         this.habilidades = h;
     }
     
-    
-    
-    
-    
 }

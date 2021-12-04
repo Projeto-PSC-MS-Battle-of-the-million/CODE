@@ -1,12 +1,13 @@
 package battle.of.the.million;
 
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BattleOfTheMillion {
     public static void main(String[] args) {
              
+        
+                                                            //Instancias
+        
         //Personagens
         
         Personagem p[] = new Personagem [5];
@@ -32,18 +33,8 @@ public class BattleOfTheMillion {
        q[8] = new Pergunta ("Pergunta", 8);
        q[9] = new Pergunta ("Pergunta", 9);
        
-       //Alternativas Wdison
+       //Alternativas
        
-       ArrayList<Alternativas> alt = new ArrayList<Alternativas>();
-       for (int i=0;i<10;i++)
-       {
-            alt.add(new Alternativas (false, "Alternativa",i));
-            alt.add(new Alternativas (false, "Alternativa",i));
-            alt.add(new Alternativas (true, "Alternativa",i));
-            alt.add(new Alternativas (false, "Alternativa",i));
-       }            
-       
-       //Alternativas Gustavo
        Alternativas a [] = new Alternativas [40];
        
        a[0] = new Alternativas (false, "Alternativa",0);
@@ -91,9 +82,12 @@ public class BattleOfTheMillion {
        
        MenuInicial m1 = new MenuInicial();
        
-        m1.MenuInicial();
+       //Partida
        
-        //Entrada do Jogador
+       Partida s = new Partida("null","null","null",0,false);
+       
+       
+        //Jogador
         
        Scanner input = new Scanner(System.in);
        
@@ -102,20 +96,27 @@ public class BattleOfTheMillion {
        j[0] = new Jogador ("null", "null", "null", 0, true);
        j[1] = new Jogador ("null", "null", "null", 0, true);
        
-        System.out.println("\n------ CADASTRO JOGADOR 1 ------\n");
-     j[0].CadastrarJogador();
+       
+        // INICIO DO GAME
+     
+        // MENU INICIAL
+     
+       m1.MenuInicial();
+       
+       //CADASTRO DE JOGADORES
+      
+         System.out.println("\n------ CADASTRO JOGADOR 1 ------\n");
+       j[0].CadastrarJogador();
       
        System.out.println("\n------ CADASTRO JOGADOR 2 ------\n");
-      j[1].CadastrarJogador();
+       j[1].CadastrarJogador();
        
        //Escolha de Personagens
        
-     
       System.out.println(j[0].getApelido() + "\n------ PLAYER 1 ESCOLHA UM PERSONAGEM------ ");
       
        for(int i =0; i < 5;i++){
            
-          
         p[i].ApresentarPersonagens(i);                 
        }
        
@@ -126,24 +127,21 @@ public class BattleOfTheMillion {
        for(int i =0; i < 5;i++){
            
           
-            p[i].ApresentarPersonagens(i);                 
+      p[i].ApresentarPersonagens(i);                 
        }
-      
-      
        
      j[1].EscolherPersonagem(p);
+     
+     //Sistema de decisão 
+    
+       s.random(j);
        
-    //Sistema de decisão 
-    
-    Partida s = new Partida("null","null","null",0,false);
-    
-   s.random(j);
-    
-   s.Quiz(q ,alt);
-    
-    //Escolha de resposta
-
-    
+     //Apresentação da Questão
+     
+       s.Quiz(q ,a);
+       s.EscolherResposta(s);
+       
+       
     }
     
 }
