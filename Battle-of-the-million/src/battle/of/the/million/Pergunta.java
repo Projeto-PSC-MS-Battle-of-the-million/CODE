@@ -5,11 +5,12 @@ public class Pergunta {
     
     private int id;
     private String enunciado;
+    private boolean pergstatus = true;
     private String alternativas;
     
     //Metodo Construtor
 
-    public Pergunta(String e, int i) {
+    public Pergunta(String e, int i, boolean p) {
         this.id = i;
         this.enunciado = e;
     }
@@ -39,6 +40,16 @@ public class Pergunta {
     public void setAlternativas(String a) {
         this.alternativas = a;
     }
+
+    public boolean getPergstatus() {
+        return pergstatus;
+    }
+
+    public void setPergstatus(boolean p) {
+        this.pergstatus = p;
+    }
+    
+    
    
     
 }

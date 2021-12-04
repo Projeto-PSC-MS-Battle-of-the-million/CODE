@@ -10,7 +10,7 @@ public class Partida extends Jogador{
 
     //Métodos Construtor
     
-   public Partida(String nome, String n, String h, float v, boolean s) {
+   public Partida(String nome, String n, String h, int v, boolean s) {
         super(nome, n, h, v, s);
     }
 
@@ -35,13 +35,19 @@ public class Partida extends Jogador{
             }
             
     }
-    public void Quiz(Pergunta [] p, Alternativas [] a){
+    public void Quiz(Pergunta [] p, Alternativas [] a, Partida s, Jogador [] j){
         
         Random  i = new Random();
         
-           int x = i.nextInt(9);
+        int x;
+            x = i.nextInt(9);
            char letter='@';
+           
+           if(p[x].getPergstatus() == false){
+           s.Quiz(p, a, s, j);
+            }else{
            System.out.println("\n" + p[x].getEnunciado() + "\n");
+           p[x].setPergstatus(false);}
           
            for(int y=0; y < 40; y++){
               
@@ -51,7 +57,6 @@ public class Partida extends Jogador{
                 
                        String Stringletter = Character.toString(letter);
 
-                      
                    System.out.print("[" + Stringletter + "] ");
                System.out.println(a[y].getEnunciado());
                  
@@ -66,7 +71,9 @@ public class Partida extends Jogador{
                }
 }
            }
-          
+           s.EscolherResposta(s, j, j, p, a);
+           
+
     }
     
     //Métodos Especiais

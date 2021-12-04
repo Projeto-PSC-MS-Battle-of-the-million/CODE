@@ -5,13 +5,13 @@ public  class Personagem {
     //Atributos
     
     private  String nome, habilidades;
-    private float vida;
+    private int vida = 100;
     private boolean status;
     Scanner input = new Scanner(System.in);
 
     //Método Constutor
     
-    public Personagem(String n, String h, float v, boolean s) {
+    public Personagem(String n, String h, int v, boolean s) {
         
         this.nome = n;
         this.habilidades = h;
@@ -37,8 +37,8 @@ public  class Personagem {
         return vida;
     }
 
-    public void setVida(float vida) {
-        this.setVida(this.getVida() * 0.95f);
+    public void setVida(int vida) {
+        this.vida = vida;
     }
 
     public boolean getStatus() {

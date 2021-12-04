@@ -1,9 +1,14 @@
 package battle.of.the.million;
 
 import battle.of.the.million.Personagem;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.management.RuntimeErrorException;
 import java.util.InputMismatchException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Jogador extends Personagem{
     
@@ -11,7 +16,21 @@ public class Jogador extends Personagem{
     
     private String nome, apelido, email;
     private long telefone;
-    private Personagem perselec;
+    private String Personagem;
+    
+    public String getPersonagem() {
+        return Personagem;
+    }
+
+    @Override
+    public void setVida(int vida) {
+        super.setVida(vida); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float getVida() {
+        return super.getVida(); //To change body of generated methods, choose Tools | Templates.
+    }
     private int sorte;
     private boolean vez;
     
@@ -19,7 +38,7 @@ public class Jogador extends Personagem{
 
       //Método Construtor
       
-    public Jogador(String nome, String n, String h, float v, boolean s) {
+    public Jogador(String nome, String n, String h, int v, boolean s) {
         super(n, h, v, s);
         this.nome = nome;
     }
@@ -31,7 +50,7 @@ public class Jogador extends Personagem{
         int x,a,d;
         
     }
-    public void EscolherResposta(Partida s, Jogador [] j){
+    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a){
         int x,i;
        
         if(j[0].getVez() == true){
@@ -39,6 +58,14 @@ public class Jogador extends Personagem{
         }else{
             i=1;
         }
+        
+           System.out.print("\n" + j[i].Personagem);
+           
+           for(float y = 0; y <= j[i].getVida(); y+=10){
+               System.out.print("[]");
+           }
+           System.out.print(" " + j[i].getVida() + " %\n");
+          
         System.out.print("\n" + j[i].nome + " Escolha uma Alternativa: ");
         
         String r;
@@ -51,22 +78,31 @@ public class Jogador extends Personagem{
         if(x == 1){
             
         }else if(x ==2){
-            s.EscolherResposta(s,j);
+            s.EscolherResposta(s,j,p,u,a);
         }else{
             System.out.println("Alternativa invalida, digite novamente!");
-            s.EscolherResposta(s,j);
+            s.EscolherResposta(s,j,p,u,a);
         }
      
         switch (r){
             
             case "a":
                if (s.getA() == true){
-                   System.out.println("Parabéns você acertou!");
+                   System.out.println("Parabéns, você acertou!");
+                   
+                   s.Quiz(u, a, s, j);
                    
                }else{
                    System.out.println("Você errou!");
                    j[i].vez = false;
-                   
+                j[i].setVida((int) (j[i].getVida() * 0.95));
+                   System.out.print("\n" + j[i].Personagem);
+           
+           for(float y = 0; y <= j[i].getVida(); y+=10){
+               System.out.print("[]");
+           }
+           System.out.print(" " + j[i].getVida() + " %\n");
+           
                    if(i == 0){
                        i=1;
                         j[i].vez = true;
@@ -76,11 +112,13 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
+               s.Quiz(u, a, s, j);
                 break;
                 
             case "b":
                 if (s.getA() == true){
                    System.out.println("Parabéns você acertou!");
+                   s.Quiz(u, a, s,j);
                }else{
                    System.out.println("Você errou!");
                    j[i].vez = false;
@@ -94,11 +132,13 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
+                s.Quiz(u, a, s, j);
                 break;
                 
             case "c":
                 if (s.getC() == true){
                    System.out.println("Parabéns você acertou!");
+                   s.Quiz(u,a,s,j);
                }else{
                    System.out.println("Você errou!");
                    j[i].vez = false;
@@ -111,14 +151,15 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }
+               }s.Quiz(u, a, s, j);
                 break;
                 
             case "d":
                 if (s.getD() == true){
                    System.out.println("Parabéns você acertou!");
+                   s.Quiz(u, a, s,j);
                }else{
-                   System.out.println("Você errou!");
+                   System.out.println("\nVocÊ errou!");
                    j[i].vez = false;
                    
                    if(i == 0){
@@ -129,116 +170,147 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }
+               }s.Quiz(u, a, s, j);
                 break;
                 
             default:
                 System.out.println("Alternativa invalida, digite novamente!");
-                s.EscolherResposta(s,j);
+                s.EscolherResposta(s,j,p,u,a);
                 break;
                 
         }
         
     }
       
-    public void CadastrarJogador() {
+    public void CadastrarJogador(Jogador [] j) {
        
+           FileWriter  fw = null;
         try{
-            input = new Scanner(System.in);
-        System.out.print("Nome: ");
-        this.setNome(input.nextLine());
-        
-        input = new Scanner(System.in);
-        System.out.print("Apelido: ");
-        this.setApelido(input.nextLine());
-        
-        input = new Scanner(System.in);
-        System.out.print("Número de Telefone: ");
-        long g = input.nextLong();
-        this.setTelefone(g);
-        
-        input = new Scanner(System.in);
-        System.out.print("E-mail: ");
-        this.setEmail(input.nextLine());
-        
-        System.out.println("\n\n------ JOGADOR CADASTRADO COM SUCESSO! ------");
+            try{
+                input = new Scanner(System.in);
+                System.out.print("Nome: ");
+                this.setNome(input.nextLine());
+                
+                input = new Scanner(System.in);
+                System.out.print("Apelido: ");
+                this.setApelido(input.nextLine());
+                
+                input = new Scanner(System.in);
+                System.out.print("Número de Telefone: ");
+                long g = input.nextLong();
+                this.setTelefone(g);
+                
+                input = new Scanner(System.in);
+                System.out.print("E-mail: ");
+                this.setEmail(input.nextLine());
+                
+            }
+            catch(InputMismatchException k){
+                System.out.println("\nDADOS INVALIDO, VERIFIQUE S DADOS E TENTE NOVAMENTE!");
+                this.CadastrarJogador(j);
+                
+            }
+            fw = new FileWriter("Login.txt");
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println(j[0].nome);
     }
-        catch(InputMismatchException k){
-            System.out.println("DADOS INVALIDO, VERIFIQUE S DADOS E TENTE NOVAMENTE!");
-            this.CadastrarJogador();
-    }
-        
+        catch(IOException ex){
+            Logger.getLogger(Jogador.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+    } finally {
+            try {
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Jogador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+           
+      
         }
         
-    public void EscolherPersonagem(Personagem [] p){
+    public void EscolherPersonagem(Personagem [] p, Jogador [] j){
         
-        System.out.print("\n"+ this.getApelido() +" Escolha um dos personagens: ");
+        System.out.print("\n"+ this.getNome()+" Escolha um dos personagens: ");
          int selec = input.nextInt();
+         j[0].setVida(100);
+         j[1].setVida(100);
          switch (selec){
              
             case 1: // Personagem
                
               if (p[0].getStatus() == true){ 
                   p[0].setStatus(false);
+                  Personagem = p[0].getNome();
+                  this.setVida(100);
+                  
               }else{
                    System.out.println("\nPERSONAGEM INVALIDO ");
-                   this.EscolherPersonagem(p);
+                   this.EscolherPersonagem(p,j);
                }
                 break;
                 
             case 2: // Personagem 1
                if (p[1].getStatus() == true){ 
                   p[1].setStatus(false);
+                  j[1].Personagem = p[1].getNome();
+                  p[1].setVida(100);
+                 
               }else{
                    System.out.println("\nPERSONAGEM INVALIDO ");
-                   this.EscolherPersonagem(p);
+                   this.EscolherPersonagem(p,j);
                }
                 break;
                 
             case 3: // Personagem 2
                if (p[2].getStatus() == true){ 
                   p[2].setStatus(false);
+                  j[2].Personagem = p[2].getNome();
+                  p[2].setVida(100);
+               
               }else{
                    System.out.println("\nPERSONAGEM INVALIDO ");
-                   this.EscolherPersonagem(p);
+                   this.EscolherPersonagem(p,j);
                }
                 break;
                 
             case 4: // Personagem 3
                 if (p[3].getStatus() == true){ 
                   p[3].setStatus(false);
+                  j[3].Personagem = p[3].getNome();
+                  p[3].setVida(100);
+                 
               }else{
                    System.out.println("\nPERSONAGEM INVALIDO ");
-                   this.EscolherPersonagem(p);
+                   this.EscolherPersonagem(p,j);
                }
                 break;
                 
             case 5: // Personagem 4
                if (p[4].getStatus() == true){ 
                   p[4].setStatus(false);
+                  j[4].Personagem = p[4].getNome();
+                  p[4].setVida(100);
+                 
               }else{
                    System.out.println("\nPERSONAGEM INVALIDO ");
-                   this.EscolherPersonagem(p);
+                   this.EscolherPersonagem(p,j);
                }
                 break;
                 
             default: //Opção Invalidade
                 System.out.println("\nNúmero Invalido digite novamente\n");
-                this.EscolherPersonagem(p);
+                this.EscolherPersonagem(p,j);
                 break;
                 
         }
     }
     
-    public Personagem getPerselec() {
-        return perselec;
-    }
+   
 
     //Métodos Especiais
     
-    public void setPerselec(Personagem p) {
-        this.perselec = p;
-    }
+   
 
     public String getNome() {
         return nome;

@@ -22,25 +22,25 @@ public class BattleOfTheMillion {
        
        Pergunta q [] = new Pergunta [10];
        
-       q[0] = new Pergunta ("Pergunta", 0);
-       q[1] = new Pergunta ("Pergunta", 1);
-       q[2] = new Pergunta ("Pergunta", 2);
-       q[3] = new Pergunta ("Pergunta", 3);
-       q[4] = new Pergunta ("Pergunta", 4);
-       q[5] = new Pergunta ("Pergunta", 5);
-       q[6] = new Pergunta ("Pergunta", 6);
-       q[7] = new Pergunta ("Pergunta", 7);
-       q[8] = new Pergunta ("Pergunta", 8);
-       q[9] = new Pergunta ("Pergunta", 9);
+       q[0] = new Pergunta ("Pergunta", 0,true);
+       q[1] = new Pergunta ("Pergunta", 1,true);
+       q[2] = new Pergunta ("Pergunta", 2,true);
+       q[3] = new Pergunta ("Pergunta", 3,true);
+       q[4] = new Pergunta ("Pergunta", 4,true);
+       q[5] = new Pergunta ("Pergunta", 5,true);
+       q[6] = new Pergunta ("Pergunta", 6,true);
+       q[7] = new Pergunta ("Pergunta", 7,true);
+       q[8] = new Pergunta ("Pergunta", 8,true);
+       q[9] = new Pergunta ("Pergunta", 9,true);
        
        //Alternativas
        
        Alternativas a [] = new Alternativas [40];
        
-       a[0] = new Alternativas (false, "Alternativa",0);
-       a[1] = new Alternativas (false, "Alternativa",0);
-       a[2] = new Alternativas (false, "Alternativa",0);
-       a[3] = new Alternativas (false, "Alternativa",0);
+       a[0] = new Alternativas (true, "Alternativa",0);
+       a[1] = new Alternativas (true, "Alternativa",0);
+       a[2] = new Alternativas (true, "Alternativa",0);
+       a[3] = new Alternativas (true, "Alternativa",0);
        a[4] = new Alternativas (false, "Alternativa",1);
        a[5] = new Alternativas (false, "Alternativa",1);
        a[6] = new Alternativas (false, "Alternativa",1);
@@ -106,31 +106,30 @@ public class BattleOfTheMillion {
        //CADASTRO DE JOGADORES
       
          System.out.println("\n------ CADASTRO JOGADOR 1 ------\n");
-       j[0].CadastrarJogador();
+       j[0].CadastrarJogador(j);
       
        System.out.println("\n------ CADASTRO JOGADOR 2 ------\n");
-       j[1].CadastrarJogador();
+       j[1].CadastrarJogador(j);
        
        //Escolha de Personagens
        
-      System.out.println(j[0].getApelido() + "\n------ PLAYER 1 ESCOLHA UM PERSONAGEM------ ");
+      System.out.println("\n------ PLAYER 1 ESCOLHA UM PERSONAGEM------\n");
       
        for(int i =0; i < 5;i++){
            
         p[i].ApresentarPersonagens(i);                 
        }
        
-        j[0].EscolherPersonagem(p);
+        j[0].EscolherPersonagem(p,j);
       
-      System.out.println(j[1].getApelido() + "\n------ PLAYER 2 ESCOLHA UM PERSONAGEM------ ");
+      System.out.println("\n------ PLAYER 2 ESCOLHA UM PERSONAGEM------ \n");
       
        for(int i =0; i < 5;i++){
            
-          
       p[i].ApresentarPersonagens(i);                 
        }
        
-     j[1].EscolherPersonagem(p);
+     j[1].EscolherPersonagem(p,j);
      
      //Sistema de decisão 
     
@@ -138,11 +137,17 @@ public class BattleOfTheMillion {
        
      //Apresentação da Questão
      
-     for (int i=0;i<=10;i++){
-         s.Quiz(q ,a);
-       s.EscolherResposta(s,j);
-       
-    }
+      s.Quiz(q, a, s, j);
+      
+     
+     if(j[0].getVida() > j[1].getVida()){
+         System.out.println("\n======O JOGADOR " + j[0].getNome() + " VENCEU O JOGO! ======");
+     }else if(j[0].getVida() < j[1].getVida()){
+     System.out.println("\n====== O JOGADOR " + j[1].getNome() + " VENCEU O JOGO! ======");
+     }else{
+         System.out.println("\n ====== O JOGO EMPATOU! ======");
+     }
+    
       
        
        
