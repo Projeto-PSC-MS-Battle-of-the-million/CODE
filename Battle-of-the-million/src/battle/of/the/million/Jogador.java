@@ -50,7 +50,7 @@ public class Jogador extends Personagem{
         int x,a,d;
         
     }
-    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a){
+    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a, MenuInicial m1){
         int x,i;
        
         if(j[0].getVez() == true){
@@ -66,7 +66,7 @@ public class Jogador extends Personagem{
            }
            System.out.print(" " + j[i].getVida() + " %\n");
           
-        System.out.print("\n" + j[i].nome + " Escolha uma Alternativa: ");
+        System.out.print("\n" + j[i].nome + " escolha uma alternativa: ");
         
         String r;
         r = input.next().toLowerCase();
@@ -78,10 +78,10 @@ public class Jogador extends Personagem{
         if(x == 1){
             
         }else if(x ==2){
-            s.EscolherResposta(s,j,p,u,a);
+            s.EscolherResposta(s,j,p,u,a,m1);
         }else{
             System.out.println("Alternativa invalida, digite novamente!");
-            s.EscolherResposta(s,j,p,u,a);
+            s.EscolherResposta(s,j,p,u,a,m1);
         }
      
         switch (r){
@@ -90,7 +90,7 @@ public class Jogador extends Personagem{
                if (s.getA() == true){
                    System.out.println("Parabéns, você acertou!");
                    
-                   s.Quiz(u, a, s, j);
+                   s.Quiz(u, a, s, j,m1);
                    
                }else{
                    System.out.println("Você errou!");
@@ -112,13 +112,13 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
-               s.Quiz(u, a, s, j);
+               s.Quiz(u, a, s, j,m1);
                 break;
                 
             case "b":
                 if (s.getA() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u, a, s,j);
+                   s.Quiz(u, a, s,j,m1);
                }else{
                    System.out.println("Você errou!");
                    j[i].vez = false;
@@ -132,13 +132,13 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
-                s.Quiz(u, a, s, j);
+                s.Quiz(u, a, s, j,m1);
                 break;
                 
             case "c":
                 if (s.getC() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u,a,s,j);
+                   s.Quiz(u,a,s,j,m1);
                }else{
                    System.out.println("Você errou!");
                    j[i].vez = false;
@@ -151,13 +151,13 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }s.Quiz(u, a, s, j);
+               }s.Quiz(u, a, s, j,m1);
                 break;
                 
             case "d":
                 if (s.getD() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u, a, s,j);
+                   s.Quiz(u, a, s,j,m1);
                }else{
                    System.out.println("\nVocÊ errou!");
                    j[i].vez = false;
@@ -170,12 +170,12 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }s.Quiz(u, a, s, j);
+               }s.Quiz(u, a, s, j,m1);
                 break;
                 
             default:
                 System.out.println("Alternativa invalida, digite novamente!");
-                s.EscolherResposta(s,j,p,u,a);
+                s.EscolherResposta(s,j,p,u,a,m1);
                 break;
                 
         }
@@ -189,11 +189,11 @@ public class Jogador extends Personagem{
             try{
                 input = new Scanner(System.in);
                 System.out.print("Nome: ");
-                this.setNome(input.nextLine());
-                
+                this.setNome(input.nextLine().toUpperCase());
+
                 input = new Scanner(System.in);
                 System.out.print("Apelido: ");
-                this.setApelido(input.nextLine());
+                this.setApelido(input.nextLine().toUpperCase());
                 
                 input = new Scanner(System.in);
                 System.out.print("Número de Telefone: ");
@@ -202,7 +202,7 @@ public class Jogador extends Personagem{
                 
                 input = new Scanner(System.in);
                 System.out.print("E-mail: ");
-                this.setEmail(input.nextLine());
+                this.setEmail(input.nextLine().toLowerCase());
                 
             }
             catch(InputMismatchException k){
@@ -231,7 +231,7 @@ public class Jogador extends Personagem{
         
     public void EscolherPersonagem(Personagem [] p, Jogador [] j){
         
-        System.out.print("\n"+ this.getNome()+" Escolha um dos personagens: ");
+        System.out.print("\n"+ this.getNome()+" escolha um dos personagens:  ");
          int selec = input.nextInt();
          j[0].setVida(100);
          j[1].setVida(100);
@@ -253,7 +253,7 @@ public class Jogador extends Personagem{
             case 2: // Personagem 1
                if (p[1].getStatus() == true){ 
                   p[1].setStatus(false);
-                  j[1].Personagem = p[1].getNome();
+                    Personagem = p[1].getNome();
                   p[1].setVida(100);
                  
               }else{
@@ -265,7 +265,7 @@ public class Jogador extends Personagem{
             case 3: // Personagem 2
                if (p[2].getStatus() == true){ 
                   p[2].setStatus(false);
-                  j[2].Personagem = p[2].getNome();
+                  Personagem = p[2].getNome();
                   p[2].setVida(100);
                
               }else{
@@ -277,7 +277,7 @@ public class Jogador extends Personagem{
             case 4: // Personagem 3
                 if (p[3].getStatus() == true){ 
                   p[3].setStatus(false);
-                  j[3].Personagem = p[3].getNome();
+                    Personagem = p[3].getNome();
                   p[3].setVida(100);
                  
               }else{
@@ -289,7 +289,7 @@ public class Jogador extends Personagem{
             case 5: // Personagem 4
                if (p[4].getStatus() == true){ 
                   p[4].setStatus(false);
-                  j[4].Personagem = p[4].getNome();
+                  Personagem = p[4].getNome();
                   p[4].setVida(100);
                  
               }else{

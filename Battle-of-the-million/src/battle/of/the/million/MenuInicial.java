@@ -9,7 +9,7 @@ public class MenuInicial {
     
     //Métodos
     public void MenuInicial(){
-        System.out.println("------ BATTLE OF THE MILLION ------\n");
+        System.out.println("\n------ BATTLE OF THE MILLION ------\n");
         System.out.println("[1] Iniciar Jogo");
         System.out.println("[2] Informações dos desenvolvedores");
         System.out.println("[3] Explicação do Jogo");

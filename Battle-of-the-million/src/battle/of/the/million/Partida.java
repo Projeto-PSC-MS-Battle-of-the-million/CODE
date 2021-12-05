@@ -7,7 +7,7 @@ public class Partida extends Jogador{
     //Atributos
     
   boolean A,B,C,D;
-
+  int l;
     //Métodos Construtor
     
    public Partida(String nome, String n, String h, int v, boolean s) {
@@ -35,16 +35,61 @@ public class Partida extends Jogador{
             }
             
     }
-    public void Quiz(Pergunta [] p, Alternativas [] a, Partida s, Jogador [] j){
+    
+    public void finalizar (Jogador [] j, MenuInicial m1, Partida s){
+        
+        System.out.println("\n====== PONTUAÇÃO FINAL! ======");
+         System.out.print("\n" + j[0].getPersonagem());
+           
+           for(float y = 0; y <= j[0].getVida(); y+=10){
+               System.out.print("[]");
+           }
+           System.out.print(" " + j[0].getVida() + " %\n");
+           
+            System.out.print("\n" + j[1].getPersonagem());
+           
+           for(float y = 0; y <= j[1].getVida(); y+=10){
+               System.out.print("[]");
+           }
+           System.out.print(" " + j[1].getVida() + " %\n");
+        
+     if(j[0].getVida() > j[1].getVida()){
+         System.out.println("\n======O JOGADOR " + j[0].getNome() + " VENCEU O JOGO! ======");
+     }else if(j[0].getVida() < j[1].getVida()){
+     System.out.println("\n====== O JOGADOR " + j[1].getNome() + " VENCEU O JOGO! ======");
+     }else{
+         System.out.println("\n====== O JOGO EMPATOU! ======\n");
+     }
+        System.out.println("\n       ====== FIMA DO GAME ======\n");
+        System.out.print("Digite 1 para retornar ao menu inicial: ");
+        
+        int k;
+        k=input.nextInt();
+        
+        if(k==1){
+            m1.MenuInicial();
+        }else{
+            System.out.println("Digite uma opção válida!");
+            s.finalizar(j, m1, s);
+        }
+         
+    }
+    
+    public void Quiz(Pergunta [] p, Alternativas [] a, Partida s, Jogador [] j, MenuInicial m1){
+       
+        int x;
         
         Random  i = new Random();
+        l++;
         
-        int x;
             x = i.nextInt(9);
            char letter='@';
            
            if(p[x].getPergstatus() == false){
-           s.Quiz(p, a, s, j);
+               if(l > 30){
+               s.finalizar(j,m1,s);
+               }else{
+           s.Quiz(p, a, s, j,m1);}
             }else{
            System.out.println("\n" + p[x].getEnunciado() + "\n");
            p[x].setPergstatus(false);}
@@ -71,7 +116,7 @@ public class Partida extends Jogador{
                }
 }
            }
-           s.EscolherResposta(s, j, j, p, a);
+           s.EscolherResposta(s, j, j, p, a,m1);
            
 
     }

@@ -137,16 +137,10 @@ public class BattleOfTheMillion {
        
      //Apresentação da Questão
      
-      s.Quiz(q, a, s, j);
+      s.Quiz(q, a, s, j,m1);
       
-     
-     if(j[0].getVida() > j[1].getVida()){
-         System.out.println("\n======O JOGADOR " + j[0].getNome() + " VENCEU O JOGO! ======");
-     }else if(j[0].getVida() < j[1].getVida()){
-     System.out.println("\n====== O JOGADOR " + j[1].getNome() + " VENCEU O JOGO! ======");
-     }else{
-         System.out.println("\n ====== O JOGO EMPATOU! ======");
-     }
+      
+   
     
       
        
