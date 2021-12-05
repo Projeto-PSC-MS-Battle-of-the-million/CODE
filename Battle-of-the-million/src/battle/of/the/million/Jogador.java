@@ -126,7 +126,7 @@ public class Jogador extends Personagem{
                 break;
                 
             case "b":
-                if (s.getA() == true){
+                if (s.getB()== true){
                    System.out.println("Parabéns você acertou!");
                    s.Quiz(u, a, s,j,m1,A,B,C,D);
                }else{

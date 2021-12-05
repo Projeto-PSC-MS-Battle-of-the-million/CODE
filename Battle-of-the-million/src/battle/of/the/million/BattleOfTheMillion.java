@@ -13,20 +13,20 @@ public class BattleOfTheMillion {
         
         Personagem p[] = new Personagem [5];
         
-        p[0] = new Personagem ("Gustavo", "Paciencia", 100, true);
-        p[1] = new Personagem ("Breno", "------", 100, true);
-        p[2] = new Personagem ("Mark", "--------", 100, true);
-        p[3] = new Personagem ("Paulo", "-------", 100, true);
-        p[4] = new Personagem ("Allan", "-------", 100, true);
+        p[0] = new Personagem ("Fred Jones", "Líderança", 100, true);
+        p[1] = new Personagem ("Velma Dinkley", "Inteligencia", 100, true);
+        p[2] = new Personagem ("Scooby-Doo", "Companherismo", 100, true);
+        p[3] = new Personagem ("Daphne Blake", "Charme", 100, true);
+        p[4] = new Personagem ("Salshicha", "Veloz", 100, true);
         
        //Perguntas
        
        Pergunta q [] = new Pergunta [10];
        
-       q[0] = new Pergunta ("Pergunta", 0,true);
-       q[1] = new Pergunta ("Pergunta", 1,true);
-       q[2] = new Pergunta ("Pergunta", 2,true);
-       q[3] = new Pergunta ("Pergunta", 3,true);
+       q[0] = new Pergunta ("Para que servem as classes em orientação a objetos?", 0,true);
+       q[1] = new Pergunta ("Para que serve o encapsulamento na linguagem orientada a objeto?", 1,true);
+       q[2] = new Pergunta ("Para que serve o polimorfismo na linguagem orientada a objetos?", 2,true);
+       q[3] = new Pergunta ("Pare que serve a diagramação em uma UML?", 3,true);
        q[4] = new Pergunta ("Pergunta", 4,true);
        q[5] = new Pergunta ("Pergunta", 5,true);
        q[6] = new Pergunta ("Pergunta", 6,true);
@@ -38,21 +38,21 @@ public class BattleOfTheMillion {
        
        Alternativas a [] = new Alternativas [40];
        
-       a[0] = new Alternativas (true, "Alternativa",0);
-       a[1] = new Alternativas (true, "Alternativa",0);
-       a[2] = new Alternativas (true, "Alternativa",0);
-       a[3] = new Alternativas (true, "Alternativa",0);
+       a[0] = new Alternativas (false, "Alternativa",0);
+       a[1] = new Alternativas (false, "Alternativa",0);
+       a[2] = new Alternativas (true, "Servem para definir as características, atributos e funções que um objeto será capaz de realizar.",0);
+       a[3] = new Alternativas (false, "Alternativa",0);
        a[4] = new Alternativas (false, "Alternativa",1);
-       a[5] = new Alternativas (false, "Alternativa",1);
+       a[5] = new Alternativas (true, "Serve para esconder Processos internos de um objeto de um ou mais usuários",1);
        a[6] = new Alternativas (false, "Alternativa",1);
        a[7] = new Alternativas (false, "Alternativa",1);
        a[8] = new Alternativas (false, "Alternativa",2);
-       a[9] = new Alternativas (false, "Alternativa",2);
+       a[9] = new Alternativas (true, "Serve para que um objeto herde as características de uma determinada classe já existente.",2);
        a[10] = new Alternativas (false, "Alternativa",2);
        a[11] = new Alternativas (false, "Alternativa",2);
        a[12] = new Alternativas (false, "Alternativa",3);
        a[13] = new Alternativas (false, "Alternativa",3);
-       a[14] = new Alternativas (false, "Alternativa",3);
+       a[14] = new Alternativas (true, "Serve para se ter uma visão geral da modelagem de um software orientado a objetos",3);
        a[15] = new Alternativas (false, "Alternativa",3);
        a[16] = new Alternativas (false, "Alternativa",4);
        a[17] = new Alternativas (false, "Alternativa",4);

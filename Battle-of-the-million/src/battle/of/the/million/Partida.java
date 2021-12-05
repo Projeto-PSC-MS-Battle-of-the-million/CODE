@@ -7,7 +7,7 @@ public class Partida extends Jogador{
     //Atributos
     
   private boolean A,B,C,D;
-  private int l;
+  private int l, nq;
   
     //Métodos Construtor
     
@@ -26,11 +26,11 @@ public class Partida extends Jogador{
                 random(j);
             }else if (j[0].getSorte()> j[1].getSorte()){
                 
-                System.out.println("O Player " + j[0].getApelido() + " jogara primeiro");
+                System.out.println("\nO JOGADOR  " + j[0].getNome() + " INICIA A PRIMEIRA RODADA");
                     j[0].setVez(true);
                     j[1].setVez(false);
             }else{
-                System.out.println("O Player " + j[1].getApelido() + " jogara primeiro");
+                System.out.println("\nO JOGADOR " + j[1].getNome() + " INICIA A PRIMEIRA RODADA");
                     j[1].setVez(true);
                     j[0].setVez(false);
             }
@@ -80,6 +80,7 @@ public class Partida extends Jogador{
        
         int x;
         
+        
         Random  i = new Random();
         l++;
         
@@ -91,8 +92,9 @@ public class Partida extends Jogador{
                s.finalizar(j,m1,s);
                }else{
            s.Quiz(p, a, s, j,m1,A,B,C,D);}
-            }else{
-           System.out.println("\n" + p[x].getEnunciado() + "\n");
+            }else{nq++;
+               System.out.println("\n============ QUESTÃO " + nq + " ============");
+           System.out.println("\n[" + nq + "] " + p[x].getEnunciado() + "\n");
            p[x].setPergstatus(false);}
           
            for(int y=0; y < 40; y++){
