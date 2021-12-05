@@ -1,4 +1,7 @@
 package battle.of.the.million;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class MenuInicial {
     
@@ -9,6 +12,7 @@ public class MenuInicial {
     
     //Métodos
     public void MenuInicial(){
+        
         System.out.println("\n------ BATTLE OF THE MILLION ------\n");
         System.out.println("[1] Iniciar Jogo");
         System.out.println("[2] Informações dos desenvolvedores");
@@ -87,6 +91,8 @@ public class MenuInicial {
                 break;
                 
         }
+       
+        
     }
     
     }

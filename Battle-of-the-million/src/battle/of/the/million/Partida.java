@@ -6,8 +6,9 @@ public class Partida extends Jogador{
 
     //Atributos
     
-  boolean A,B,C,D;
-  int l;
+  private boolean A,B,C,D;
+  private int l;
+  
     //Métodos Construtor
     
    public Partida(String nome, String n, String h, int v, boolean s) {
@@ -75,7 +76,7 @@ public class Partida extends Jogador{
          
     }
     
-    public void Quiz(Pergunta [] p, Alternativas [] a, Partida s, Jogador [] j, MenuInicial m1){
+    public void Quiz(Pergunta [] p, Alternativas [] a, Partida s, Jogador [] j, MenuInicial m1, Partida A, Partida B, Partida C, Partida D){
        
         int x;
         
@@ -89,7 +90,7 @@ public class Partida extends Jogador{
                if(l > 30){
                s.finalizar(j,m1,s);
                }else{
-           s.Quiz(p, a, s, j,m1);}
+           s.Quiz(p, a, s, j,m1,A,B,C,D);}
             }else{
            System.out.println("\n" + p[x].getEnunciado() + "\n");
            p[x].setPergstatus(false);}
@@ -106,19 +107,96 @@ public class Partida extends Jogador{
                System.out.println(a[y].getEnunciado());
                  
                if(Stringletter.equalsIgnoreCase("A")){ 
-                   A = a[y].getStatus();
+                   this.setA(a[y].getStatus());
                }else if(Stringletter.equalsIgnoreCase("B")){
-                   B = a[y].getStatus();
+                   this.setB(a[y].getStatus());
                }else if(Stringletter.equalsIgnoreCase("C")){
-                   C = a[y].getStatus();
+                   this.setC(a[y].getStatus());
                }else {
-                   D = a[y].getStatus();
+                   this.setD(a[y].getStatus());
                }
 }
            }
-           s.EscolherResposta(s, j, j, p, a,m1);
+           System.out.println("\n[0]Solicitar desistencia");
+           s.EscolherResposta(s, j, j, p, a,m1,A,B,C,D);
            
 
+    }
+    
+    public void Desistir(Jogador[] j,Partida s,MenuInicial m1, Pergunta [] p, Alternativas [] a){
+    
+       if(j[0].getSdesistir() == true){
+       
+           System.out.println("\nO JOGADOR " + j[0].getNome() + " SOLICITOU DESISTENCIA\n");
+           System.out.println("Você deseja parar o jogo?\n\n[1]Sim    [2]Não \n");
+           System.out.print("Digite uma opção: ");
+                int x = input.nextInt();
+                
+                switch (x){
+                
+                    case 1:
+                        j[1].setRdesistir(true);
+                       System.out.println("\n====== O JOGO FOI FINALIZADO POR DESISTENCIA DE AMBOS JOGADORES! ======");
+                       System.out.println("\n       ====== FIMA DO GAME ======\n");
+        System.out.print("Digite 1 para retornar ao menu inicial: ");
+        
+        int k;
+        k=input.nextInt();
+        
+        if(k==1){
+            m1.MenuInicial();
+        }else{
+            System.out.println("Digite uma opção válida!");
+            s.finalizar(j, m1, s);
+        }
+                        break;
+                        
+                    case 2:
+                        int vr;
+                        j[1].setRdesistir(false);
+                        vr = (int) (j[0].getVida() * 0.15);
+                        j[1].setVida((int) (j[1].getVida() + vr));
+                        j[0].setVida((int) (j[0].getVida() * 0.85));
+                        s.Quiz(p, a, s, j, m1, s, s, s, s);
+                        break;
+                }
+                
+           
+       }else{
+       
+           System.out.println("\nO JOGADOR " + j[1].getNome() + " SOLICITOU DESISTENCIA\n");
+           System.out.println("Você deseja parar o jogo?\n\n [1]Sim    [2]Não ");
+                int x = input.nextInt();
+                int vr;
+                switch (x){
+                
+                    case 1:
+                        j[0].setRdesistir(true);
+                        System.out.println("\n====== O JOGO FOI FINALIZADO POR DESISTENCIA DE AMBOS JOGADORES! ======");
+                        System.out.println("\n       ====== FIMA DO GAME ======\n");
+        System.out.print("Digite 1 para retornar ao menu inicial: ");
+        
+        int k;
+        k=input.nextInt();
+        
+        if(k==1){
+            m1.MenuInicial();
+        }else{
+            System.out.println("Digite uma opção válida!");
+            s.finalizar(j, m1, s);
+        }
+                        break;
+                        
+                    case 2:
+                        j[0].setRdesistir(false);
+                        vr = (int) (j[1].getVida() * 0.15);
+                        j[0].setVida((int) (j[0].getVida() + vr));
+                        j[1].setVida((int) (j[1].getVida() * 0.85));
+                        s.Quiz(p, a, s, j, m1, s, s, s, s);
+                        break;
+                }
+       }
+    
     }
     
     //Métodos Especiais
@@ -154,6 +232,7 @@ public class Partida extends Jogador{
     public void setD(boolean D) {
         this.D = D;
     }
+
     
 }
     

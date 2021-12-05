@@ -17,6 +17,7 @@ public class Jogador extends Personagem{
     private String nome, apelido, email;
     private long telefone;
     private String Personagem;
+    private boolean Sdesistir,Rdesistir;
     
     public String getPersonagem() {
         return Personagem;
@@ -50,7 +51,7 @@ public class Jogador extends Personagem{
         int x,a,d;
         
     }
-    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a, MenuInicial m1){
+    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a, MenuInicial m1,Partida A, Partida B, Partida C, Partida D){
         int x,i;
        
         if(j[0].getVez() == true){
@@ -78,10 +79,10 @@ public class Jogador extends Personagem{
         if(x == 1){
             
         }else if(x ==2){
-            s.EscolherResposta(s,j,p,u,a,m1);
+            s.EscolherResposta(s,j,p,u,a,m1,A,B,C,D);
         }else{
             System.out.println("Alternativa invalida, digite novamente!");
-            s.EscolherResposta(s,j,p,u,a,m1);
+            s.EscolherResposta(s,j,p,u,a,m1,A,B,C,D);
         }
      
         switch (r){
@@ -90,10 +91,19 @@ public class Jogador extends Personagem{
                if (s.getA() == true){
                    System.out.println("Parabéns, você acertou!");
                    
-                   s.Quiz(u, a, s, j,m1);
+                   s.Quiz(u, a, s, j,m1,A,B,C,D);
                    
                }else{
                    System.out.println("Você errou!");
+                   if(A.getA() == true){
+                       System.out.println("A alternativa correra é a  A");
+                   }else if(A.getB() == true){
+                   System.out.println("A alternativa correra é a  B");
+                   }else if (C.getC() == true){
+                   System.out.println("A alternativa correra é a  C");
+                   }else{
+                   System.out.println("A alternativa correra é a  D");
+                   }
                    j[i].vez = false;
                 j[i].setVida((int) (j[i].getVida() * 0.95));
                    System.out.print("\n" + j[i].Personagem);
@@ -112,15 +122,24 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
-               s.Quiz(u, a, s, j,m1);
+               s.Quiz(u, a, s, j,m1,A,B,C,D);
                 break;
                 
             case "b":
                 if (s.getA() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u, a, s,j,m1);
+                   s.Quiz(u, a, s,j,m1,A,B,C,D);
                }else{
                    System.out.println("Você errou!");
+                   if(A.getA() == true){
+                       System.out.println("A alternativa correra é a  A");
+                   }else if(B.getB()== true){
+                   System.out.println("A alternativa correra é a  B");
+                   }else if (C.getC() == true){
+                   System.out.println("A alternativa correra é a  C");
+                   }else{
+                   System.out.println("A alternativa correra é a  D");
+                   }
                    j[i].vez = false;
                    
                    if(i == 0){
@@ -132,15 +151,24 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
-                s.Quiz(u, a, s, j,m1);
+                s.Quiz(u, a, s, j,m1,A,B,C,D);
                 break;
                 
             case "c":
                 if (s.getC() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u,a,s,j,m1);
+                   s.Quiz(u,a,s,j,m1,A,B,C,D);
                }else{
                    System.out.println("Você errou!");
+                   if(A.getA() == true){
+                       System.out.println("A alternativa correra é a  A");
+                   }else if(B.getB() == true){
+                   System.out.println("A alternativa correra é a  B");
+                   }else if (C.getC() == true){
+                   System.out.println("A alternativa correra é a  C");
+                   }else{
+                   System.out.println("A alternativa correra é a  D");
+                   }
                    j[i].vez = false;
                    
                    if(i == 0){
@@ -151,15 +179,24 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }s.Quiz(u, a, s, j,m1);
+               }s.Quiz(u, a, s, j,m1,A,B,C,D);
                 break;
                 
             case "d":
                 if (s.getD() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u, a, s,j,m1);
+                   s.Quiz(u, a, s,j,m1,A,B,C,D);
                }else{
                    System.out.println("\nVocÊ errou!");
+                   if(A.getA() == true){
+                       System.out.println("A alternativa correra é a  A");
+                   }else if(B.getB()== true){
+                   System.out.println("A alternativa correra é a  B");
+                   }else if (C.getC() == true){
+                   System.out.println("A alternativa correra é a  C");
+                   }else{
+                   System.out.println("A alternativa correra é a  D");
+                   }
                    j[i].vez = false;
                    
                    if(i == 0){
@@ -170,12 +207,30 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }s.Quiz(u, a, s, j,m1);
+               }s.Quiz(u, a, s, j,m1,A,B,C,D);
+                break;
+                
+            case "0":
+                j[i].Sdesistir=true;
+                System.out.println("\nVocê solicitou desistencia, aguarde a resposta do outro jogador");
+                
+                 j[i].vez = false;
+                   
+                   if(i == 0){
+                       i=1;
+                        j[i].vez = true;
+                       
+                   }else{
+                       i=0;
+                       j[i].vez =true;
+                   }
+                   
+               s.Desistir(j, s, m1, u, a);
                 break;
                 
             default:
                 System.out.println("Alternativa invalida, digite novamente!");
-                s.EscolherResposta(s,j,p,u,a,m1);
+                s.EscolherResposta(s,j,p,u,a,m1,A,B,C,D);
                 break;
                 
         }
@@ -185,7 +240,7 @@ public class Jogador extends Personagem{
     public void CadastrarJogador(Jogador [] j) {
        
            FileWriter  fw = null;
-        try{
+        
             try{
                 input = new Scanner(System.in);
                 System.out.print("Nome: ");
@@ -210,24 +265,12 @@ public class Jogador extends Personagem{
                 this.CadastrarJogador(j);
                 
             }
-            fw = new FileWriter("Login.txt");
-            PrintWriter pw = new PrintWriter(fw);
-            pw.println(j[0].nome);
-    }
-        catch(IOException ex){
-            Logger.getLogger(Jogador.class.getName()).log(Level.SEVERE, null, ex);
-            
-            
-    } finally {
-            try {
-                fw.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Jogador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+          
+    } 
+        
            
       
-        }
+        
         
     public void EscolherPersonagem(Personagem [] p, Jogador [] j){
         
@@ -367,7 +410,21 @@ public class Jogador extends Personagem{
     public void setVez(boolean vez) {
         this.vez = vez;
     }
-    
-    
-    
+
+    public boolean getSdesistir() {
+        return Sdesistir;
+    }
+
+    public void setSdesistir(boolean Sdesistir) {
+        this.Sdesistir = Sdesistir;
+    }
+
+    public boolean getRdesistir() {
+        return Rdesistir;
+    }
+
+    public void setRdesistir(boolean Rdesistir) {
+        this.Rdesistir = Rdesistir;
+    }
+
 }

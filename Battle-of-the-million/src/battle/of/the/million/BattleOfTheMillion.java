@@ -1,5 +1,6 @@
 package battle.of.the.million;
 
+import battle.of.the.million.BancoDeDados.Arquivo;
 import java.util.Scanner;
 
 public class BattleOfTheMillion {
@@ -137,10 +138,14 @@ public class BattleOfTheMillion {
        
      //Apresentação da Questão
      
-      s.Quiz(q, a, s, j,m1);
+      s.Quiz(q, a, s, j, m1, s, s, s, s);
+      
+      
+      
       
       
    
+ 
     
       
        
