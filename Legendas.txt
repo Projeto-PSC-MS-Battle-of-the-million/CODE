@@ -1,0 +1,41 @@
+CLASSE Partida:
+
+Atributos
+
+private boolean A,B,C,D; //Guardar as alternativas
+private int l; //limitador para não repetir questões
+private nq; //Demarcador de número de questão
+
+CLASSE Jogador:
+
+Atributos
+
+String nome,apelido,email; //Dados do Jogador
+long telefone; //Dados do Jogador
+String Personagem; //Personagem vinculado ao jogador
+boolean Sdesistir, Rdesistir; //Solicitação de desistencia
+
+CLASSE Personagem:
+
+Atributos
+
+String nome,habilidades; //Habilidade dos personagens
+int vida; //Vida dos personagens
+boolean status; // Se o personagem foi escolhido
+
+CLASSE Pergunta:
+
+Atributos
+
+int id;  //Identificador da pergunta
+String enunciado; // Enunciado da Pergunta	
+boolean pergstatus; //Status da Pergunta
+
+CLASSE Alternativas:
+
+Atributos
+
+boolean status; //Se a alternativa está correta	
+String enunciado; //Enunciado da alternativa'
+int id; //Identificador da alternativa
+

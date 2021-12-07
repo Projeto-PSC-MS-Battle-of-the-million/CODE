@@ -1,14 +1,7 @@
 package battle.of.the.million;
 
-import battle.of.the.million.Personagem;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
-import javax.management.RuntimeErrorException;
 import java.util.InputMismatchException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Jogador extends Personagem{
     
@@ -18,22 +11,6 @@ public class Jogador extends Personagem{
     private long telefone;
     private String Personagem;
     private boolean Sdesistir,Rdesistir;
-    
-    public String getPersonagem() {
-        return Personagem;
-    }
-
-    @Override
-    public void setVida(int vida) {
-        super.setVida(vida); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public float getVida() {
-        return super.getVida(); //To change body of generated methods, choose Tools | Templates.
-    }
-    private int sorte;
-    private boolean vez;
     
       Scanner input = new Scanner(System.in);
 
@@ -46,12 +23,7 @@ public class Jogador extends Personagem{
 
     //Métodos 
     
-    public void teste(){
-        
-        int x,a,d;
-        
-    }
-    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a, MenuInicial m1,Partida A, Partida B, Partida C, Partida D){
+    public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a,Partida A, Partida B, Partida C, Partida D){
         int x,i;
        
         if(j[0].getVez() == true){
@@ -79,10 +51,10 @@ public class Jogador extends Personagem{
         if(x == 1){
             
         }else if(x ==2){
-            s.EscolherResposta(s,j,p,u,a,m1,A,B,C,D);
+            s.EscolherResposta(s,j,p,u,a,A,B,C,D);
         }else{
             System.out.println("Alternativa invalida, digite novamente!");
-            s.EscolherResposta(s,j,p,u,a,m1,A,B,C,D);
+            s.EscolherResposta(s,j,p,u,a,A,B,C,D);
         }
      
         switch (r){
@@ -91,7 +63,7 @@ public class Jogador extends Personagem{
                if (s.getA() == true){
                    System.out.println("Parabéns, você acertou!");
                    
-                   s.Quiz(u, a, s, j,m1,A,B,C,D);
+                   s.Quiz(u, a, s, j,A,B,C,D);
                    
                }else{
                    System.out.println("Você errou!");
@@ -122,13 +94,13 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
-               s.Quiz(u, a, s, j,m1,A,B,C,D);
+               s.Quiz(u, a, s, j,A,B,C,D);
                 break;
                 
             case "b":
                 if (s.getB()== true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u, a, s,j,m1,A,B,C,D);
+                   s.Quiz(u, a, s,j,A,B,C,D);
                }else{
                    System.out.println("Você errou!");
                    if(A.getA() == true){
@@ -151,13 +123,13 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                }
-                s.Quiz(u, a, s, j,m1,A,B,C,D);
+                s.Quiz(u, a, s, j,A,B,C,D);
                 break;
                 
             case "c":
                 if (s.getC() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u,a,s,j,m1,A,B,C,D);
+                   s.Quiz(u,a,s,j,A,B,C,D);
                }else{
                    System.out.println("Você errou!");
                    if(A.getA() == true){
@@ -179,13 +151,13 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }s.Quiz(u, a, s, j,m1,A,B,C,D);
+               }s.Quiz(u, a, s, j,A,B,C,D);
                 break;
                 
             case "d":
                 if (s.getD() == true){
                    System.out.println("Parabéns você acertou!");
-                   s.Quiz(u, a, s,j,m1,A,B,C,D);
+                   s.Quiz(u, a, s,j,A,B,C,D);
                }else{
                    System.out.println("\nVocÊ errou!");
                    if(A.getA() == true){
@@ -207,7 +179,7 @@ public class Jogador extends Personagem{
                        i=0;
                        j[i].vez =true;
                    }
-               }s.Quiz(u, a, s, j,m1,A,B,C,D);
+               }s.Quiz(u, a, s, j,A,B,C,D);
                 break;
                 
             case "0":
@@ -225,12 +197,12 @@ public class Jogador extends Personagem{
                        j[i].vez =true;
                    }
                    
-               s.Desistir(j, s, m1, u, a);
+               s.Desistir(j, s, u, a);
                 break;
                 
             default:
                 System.out.println("Alternativa invalida, digite novamente!");
-                s.EscolherResposta(s,j,p,u,a,m1,A,B,C,D);
+                s.EscolherResposta(s,j,p,u,a,A,B,C,D);
                 break;
                 
         }
@@ -239,8 +211,6 @@ public class Jogador extends Personagem{
       
     public void CadastrarJogador(Jogador [] j) {
        
-           FileWriter  fw = null;
-        
             try{
                 input = new Scanner(System.in);
                 System.out.print("Nome: ");
@@ -426,5 +396,21 @@ public class Jogador extends Personagem{
     public void setRdesistir(boolean Rdesistir) {
         this.Rdesistir = Rdesistir;
     }
+    
+    public String getPersonagem() {
+        return Personagem;
+    }
+
+    @Override
+    public void setVida(int vida) {
+        super.setVida(vida); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float getVida() {
+        return super.getVida(); //To change body of generated methods, choose Tools | Templates.
+    }
+    private int sorte;
+    private boolean vez;
 
 }
