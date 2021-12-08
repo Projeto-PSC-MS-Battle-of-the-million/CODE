@@ -126,7 +126,7 @@ public class BattleOfTheMillion {
        }
        
      j[1].EscolherPersonagem(p,j);
-       
+      /* 
       try {
         Robot robot = new Robot();
         robot.setAutoDelay(10);
@@ -135,7 +135,7 @@ public class BattleOfTheMillion {
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyRelease(KeyEvent.VK_L);
     } catch (AWTException ex) {
-    }
+    }*/
      //Sistema de decisão 
     
        s.random(j);

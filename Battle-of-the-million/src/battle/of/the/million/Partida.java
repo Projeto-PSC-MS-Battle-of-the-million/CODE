@@ -131,6 +131,9 @@ public class Partida extends Jogador{
     
     public void Desistir(Jogador[] j,Partida s,Pergunta [] p, Alternativas [] a){
     
+        try{
+        
+            Scanner input = new Scanner(System.in);
        if(j[0].getSdesistir() == true){
        
            System.out.println("\nO JOGADOR " + j[0].getNome() + " SOLICITOU DESISTENCIA\n");
@@ -202,13 +205,21 @@ public class Partida extends Jogador{
                         break;
                 }
        }
+        }catch(Exception e){
+         System.out.println("\nInformação inválida digite novamente!");
+         s.Desistir(j, s, p, a);
+        }
+        
     
     }
     
     
     public void MenuInicial(){
-        
-        System.out.println("\n------ BATTLE OF THE MILLION ------\n");
+        try{
+            
+             input = new Scanner(System.in);
+            
+      System.out.println("\n------ BATTLE OF THE MILLION ------\n");
         System.out.println("[1] Iniciar Jogo");
         System.out.println("[2] Informações dos desenvolvedores");
         System.out.println("[3] Explicação do Jogo");
@@ -286,13 +297,14 @@ public class Partida extends Jogador{
                 MenuInicial();
                 break;
                 
-        }
-       
+        }}
+        catch(Exception e){
+                System.out.println("\nInformação inválida digite novamente!");
+               MenuInicial();
+                }
+        
         }
         
-    
-    
-    
     //Métodos Especiais
 
     public boolean getA() {
@@ -327,6 +339,5 @@ public class Partida extends Jogador{
         this.D = D;
     }
 
-    
 }
     

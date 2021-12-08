@@ -24,7 +24,8 @@ public class Jogador extends Personagem{
     //Métodos 
     
     public void EscolherResposta(Partida s, Jogador [] j, Personagem [] p, Pergunta [] u, Alternativas [] a,Partida A, Partida B, Partida C, Partida D){
-        int x,i;
+        
+        try{int x,i;
        
         if(j[0].getVez() == true){
             i=0;
@@ -206,6 +207,10 @@ public class Jogador extends Personagem{
                 break;
                 
         }
+        }catch(Exception e){
+         System.out.println("\nInformação inválida digite novamente!");
+         s.EscolherResposta(s, j, p, u, a, A, B, C, D);
+        };
         
     }
       
@@ -243,7 +248,8 @@ public class Jogador extends Personagem{
         
         
     public void EscolherPersonagem(Personagem [] p, Jogador [] j){
-        
+        try{
+             Scanner input = new Scanner(System.in);
         System.out.print("\n"+ this.getNome()+" escolha um dos personagens:  ");
          int selec = input.nextInt();
          j[0].setVida(100);
@@ -317,13 +323,30 @@ public class Jogador extends Personagem{
                 break;
                 
         }
+        }catch(Exception e){
+                  System.out.println("\nInformação inválida digite novamente!");
+                    
+                  if (j[0].Personagem == null){
+                       System.out.println("\n------ PLAYER 1 ESCOLHA UM PERSONAGEM------\n");
+                      for(int i =0; i < 5;i++){
+           
+                    p[i].ApresentarPersonagens(i);                 
+       }
+                      j[0].EscolherPersonagem(p, j);
+                      
+                  }else{
+                       System.out.println("\n------ PLAYER 2 ESCOLHA UM PERSONAGEM------\n");
+                  for(int i =0; i < 5;i++){
+           
+                    p[i].ApresentarPersonagens(i);                 
+       }
+                      j[1].EscolherPersonagem(p, j);
+                  }
+                  
+        }
     }
     
-   
-
     //Métodos Especiais
-    
-   
 
     public String getNome() {
         return nome;
