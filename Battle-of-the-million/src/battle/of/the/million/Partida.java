@@ -8,7 +8,7 @@ public class Partida extends Jogador{
     //Atributos
     
   private boolean A,B,C,D;
-  private int l, nq;
+  private int l=0, nq;
 
     //Instacias  
     Scanner input = new Scanner(System.in);
@@ -41,7 +41,13 @@ public class Partida extends Jogador{
             
     }
     
-    public void finalizar (Jogador [] j,Partida s){
+    public void finalizar (Jogador [] j,Partida s, Pergunta [] p, Alternativas [] a){
+        
+        for(int h = 0; h < 14;h++)
+            {
+                p[h].setPergstatus(true);
+                nq = 0;
+            }
         
         System.out.println("\n====== PONTUAÇÃO FINAL! ======");
          System.out.print("\n" + j[0].getPersonagem());
@@ -66,42 +72,39 @@ public class Partida extends Jogador{
          System.out.println("\n====== O JOGO EMPATOU! ======\n");
      }
         System.out.println("\n       ====== FIMA DO GAME ======\n");
-        System.out.print("Digite 1 para retornar ao menu inicial: ");
+        System.out.print("Digite uma tecla para voltar ao menu inicial: ");
         
-        int k;
-        k=input.nextInt();
+        j[1].setVida(100);
+        j[0].setVida(100);
+        String k;
+        k=input.next();
         
-        if(k==1){
-           s.MenuInicial();
-        }else{
-            System.out.println("Digite uma opção válida!");
-            s.finalizar(j,s);
-        }
-         
+        s.MenuInicial(j, s, p, a);
+        
     }
     
     public void Quiz(Pergunta [] p, Alternativas [] a, Partida s, Jogador [] j,Partida A, Partida B, Partida C, Partida D){
        
         int x;
         
-        
         Random  i = new Random();
-        l++;
         
-            x = i.nextInt(9);
+        
+            x = i.nextInt(14);
            char letter='@';
            
-           if(p[x].getPergstatus() == false){
-               if(l > 30){
-               s.finalizar(j,s);
+           if(!p[x].getPergstatus()){
+               if(l == 14){
+                 l=0;
+               s.finalizar(j,s,p,a);
                }else{
            s.Quiz(p, a, s, j,A,B,C,D);}
-            }else{nq++;
+            }else{nq++;  l++;
                System.out.println("\n============ QUESTÃO " + nq + " ============");
            System.out.println("\n[" + nq + "] " + p[x].getEnunciado() + "\n");
            p[x].setPergstatus(false);}
           
-           for(int y=0; y < 40; y++){
+           for(int y=0; y < 54; y++){
               
                if(a[y].getId() == x ){
                    
@@ -145,18 +148,26 @@ public class Partida extends Jogador{
                 
                     case 1:
                         j[1].setRdesistir(true);
+                          j[1].setVida(100);
+                          j[0].setVida(100);
+                          for(int h = 0; h < 14;h++)
+            {
+                p[h].setPergstatus(true);
+                nq = 0;
+            }
+                          
                        System.out.println("\n====== O JOGO FOI FINALIZADO POR DESISTENCIA DE AMBOS JOGADORES! ======");
                        System.out.println("\n                       ====== FIMA DO GAME ======\n");
-        System.out.print("Digite 1 para retornar ao menu inicial: ");
+        System.out.print("Digite uma tecla para voltar ao menu inicial :");
         
         int k;
         k=input.nextInt();
         
         if(k==1){
-           s.MenuInicial();
+           MenuInicial(j,s,p,a);
         }else{
-            System.out.println("Digite uma opção válida!");
-            s.finalizar(j,s);
+            
+            MenuInicial(j,s,p,a);
         }
                         break;
                         
@@ -185,15 +196,10 @@ public class Partida extends Jogador{
                         System.out.println("\n       ====== FIMA DO GAME ======\n");
         System.out.print("Digite 1 para retornar ao menu inicial: ");
         
-        int k;
-        k=input.nextInt();
+        String k;
+        k=input.next();
         
-        if(k==1){
-           s.MenuInicial();
-        }else{
-            System.out.println("Digite uma opção válida!");
-            s.finalizar(j,s);
-        }
+      s.MenuInicial(j, s, p, a);
                         break;
                         
                     case 2:
@@ -214,7 +220,7 @@ public class Partida extends Jogador{
     }
     
     
-    public void MenuInicial(){
+    public void MenuInicial(Jogador [] j, Partida s, Pergunta [] p, Alternativas [] a ){
         try{
             
              input = new Scanner(System.in);
@@ -230,6 +236,13 @@ public class Partida extends Jogador{
         
         switch (opc){
             case 1: // Inicializar o Jogo
+                if (j[0].getPersonagem() == null)
+                {
+                    
+                }else
+                {
+                    s.Quiz(p, a, s, j, s, s, s, s);
+                }
                 break;
             case 2: // Informações dos desenvolvedores
                 System.out.println("\n------ BATTLE OF THE MILLION 2021 DESENVOLVEDORES ------\n");
@@ -243,7 +256,7 @@ public class Partida extends Jogador{
                    System.out.print("Digite 1 para retornar ao menu: ");
                   i = input.nextInt();
                }
-               MenuInicial();
+               MenuInicial(j,s,p,a);
               
                 break;
             case 3: // Explicação do Jogo
@@ -264,7 +277,7 @@ public class Partida extends Jogador{
                    System.out.print("Digite 1 para retornar ao menu: ");
                   i = input.nextInt();
                }
-               MenuInicial();
+               MenuInicial(j,s,p,a);
               
                 break;
             case 4: // Sair
@@ -274,7 +287,7 @@ public class Partida extends Jogador{
                         if(x == 1){
                              System.exit(0);
                         }else if (x == 2){
-                            MenuInicial();
+                            MenuInicial(j,s,p,a);
                         }else{
                             System.out.println("\n NÚMERO INVALIDO DIGITE NOVAMENTE");
                            //
@@ -285,7 +298,7 @@ public class Partida extends Jogador{
                                         if(x == 1){
                              System.exit(0);
                         }else if (x == 2){
-                            MenuInicial();
+                            MenuInicial(j,s,p,a);
                         }
                             }
                         }
@@ -294,13 +307,13 @@ public class Partida extends Jogador{
             default: //Opção Invalidade
                 System.out.println("\nNúmero Invalido digite novamente\n");
                 
-                MenuInicial();
+               MenuInicial(j,s,p,a);
                 break;
                 
         }}
         catch(Exception e){
                 System.out.println("\nInformação inválida digite novamente!");
-               MenuInicial();
+               MenuInicial(j,s,p,a);
                 }
         
         }

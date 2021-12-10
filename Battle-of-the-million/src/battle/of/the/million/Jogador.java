@@ -223,16 +223,16 @@ public class Jogador extends Personagem{
 
                 input = new Scanner(System.in);
                 System.out.print("Apelido: ");
-                this.setApelido(input.nextLine().toUpperCase());
+              this.setApelido(input.nextLine().toUpperCase());
                 
                 input = new Scanner(System.in);
                 System.out.print("Número de Telefone: ");
                 long g = input.nextLong();
-                this.setTelefone(g);
+                    this.setTelefone(g);
                 
                 input = new Scanner(System.in);
                 System.out.print("E-mail: ");
-                this.setEmail(input.nextLine().toLowerCase());
+                   this.setEmail(input.nextLine().toLowerCase());
                 
             }
             catch(InputMismatchException k){
@@ -242,10 +242,6 @@ public class Jogador extends Personagem{
             }
           
     } 
-        
-           
-      
-        
         
     public void EscolherPersonagem(Personagem [] p, Jogador [] j){
         try{
