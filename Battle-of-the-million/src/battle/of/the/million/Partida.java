@@ -104,7 +104,7 @@ public class Partida extends Jogador{
            System.out.println("\n[" + nq + "] " + p[x].getEnunciado() + "\n");
            p[x].setPergstatus(false);}
           
-           for(int y=0; y < 54; y++){
+           for(int y=0; y < 55; y++){
               
                if(a[y].getId() == x ){
                    

@@ -39,7 +39,7 @@ public class BattleOfTheMillion {
        
        //Alternativas
        
-       Alternativas a [] = new Alternativas [55];
+       Alternativas a [] = new Alternativas [56];
        
        a[0] = new Alternativas (false, "Qualquer ponto de interrupção parará a execução do programa. ",0);
        a[1] = new Alternativas (false, "Os pontos de interrupção pararão a execução do programa no último ponto de interrupção. ",0);
@@ -80,6 +80,7 @@ public class BattleOfTheMillion {
        a[36] = new Alternativas (true, "Requisitos, Design, Desenvolvimento, Teste.",9);
        a[37] = new Alternativas (false, "Requisitos, Design, Teste, Desenvolvimento.",9);
        a[38] = new Alternativas (false, "Design, Requisitos, Desenvolvimento, Teste",9);
+       a[55] = new Alternativas (false, "Não há uma ordem correta.",9);
        a[39] = new Alternativas (true, "Servem para definir as características, atributos e funções que um objeto será capaz de realizar.",10);
        a[40] = new Alternativas (false, "Servem para organizar os atributos e funções que um programa será capaz de realizar",10);
        a[41] = new Alternativas (false, "Servem para padronizar os atributos e funções que um objeto para que esse execute as funções",10);
@@ -92,11 +93,10 @@ public class BattleOfTheMillion {
        a[48] = new Alternativas (false, "Serve para que um objeto modifique todas as características de uma determinada classe já existente.",12);
        a[49] = new Alternativas (false, "Serve para que um objeto elimine todas as funções de uma determinada classe já existente.",12);
        a[50] = new Alternativas (false, "Serve para que um objeto reprograme as características, gerando um produto completamente novo.",12);
-       a[51] = new Alternativas (false, "Serve para se ter uma visão específica da modelagem de um software orientado a objetos.",12);
-       a[52] = new Alternativas (true, "Serve para se ter uma visão geral da modelagem de um software orientado a objetos.",12);
-       a[53] = new Alternativas (false, "Serve para se ter um comando amplo da modelagem de um software orientado a objetos",12);
-       a[54] = new Alternativas (false, "Serve para modelar um software orientado a objetos.",12);
-       
+       a[51] = new Alternativas (false, "Serve para se ter uma visão específica da modelagem de um software orientado a objetos.",13);
+       a[52] = new Alternativas (true, "Serve para se ter uma visão geral da modelagem de um software orientado a objetos.",13);
+       a[53] = new Alternativas (false, "Serve para se ter um comando amplo da modelagem de um software orientado a objetos",13);
+       a[54] = new Alternativas (false, "Serve para modelar um software orientado a objetos.",13);
        
        //Partida
        
